@@ -4,7 +4,6 @@ namespace Edujugon\JIRA;
 
 use Edujugon\JIRA\Exceptions\JIRAException;
 use GuzzleHttp\Client;
-use Psr\Http\Message\StreamInterface;
 
 class JIRA
 {
@@ -39,7 +38,7 @@ class JIRA
     /** @var  string */
     protected $description;
 
-    /** @var  StreamInterface */
+    /** @var  string */
     private $response;
 
 
@@ -310,7 +309,7 @@ class JIRA
                     ],
                 'json' => $body
             ]
-        );
+        )->getBody()->getContents();
     }
 
     /**
@@ -325,7 +324,7 @@ class JIRA
     }
 
     /**
-     * @return array|string|int|bool|float
+     * @return string
      */
     public function getResponse()
     {
